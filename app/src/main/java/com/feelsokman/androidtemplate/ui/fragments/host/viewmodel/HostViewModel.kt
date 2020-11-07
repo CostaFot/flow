@@ -1,35 +1,35 @@
 package com.feelsokman.androidtemplate.ui.fragments.host.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderClient
 import com.feelsokman.androidtemplate.result.fold
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class HostViewModel @Inject constructor(
     private val jsonPlaceHolderClient: JsonPlaceHolderClient
 ) : ViewModel() {
 
-    val textData = MutableLiveData<String>()
+    val textData = MutableStateFlow<String?>(null)
 
-    fun getTodos() {
+    fun getTodo() {
         viewModelScope.launch {
             jsonPlaceHolderClient.getTodo().fold(
                 ifSuccess = {
-                    textData.postValue(it.title)
+                    textData.value = it.title
                 },
                 ifError = {
-                    textData.postValue(it.toString())
+                    textData.value = it.toString()
                 }
             )
         }
     }
 
     override fun onCleared() {
-        Timber.tag("NavigationLogger").d("HostViewModel cleared")
         super.onCleared()
     }
 }

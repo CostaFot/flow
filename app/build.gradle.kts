@@ -59,7 +59,7 @@ android {
             dimension = "style"
             applicationIdSuffix = ".templateStyle"
             versionNameSuffix = "-templateStyle"
-            resValue("string", "app_name", "Android Template")
+            resValue("string", "app_name", "Flow")
             versionCode = 1
             versionName = "0.1"
         }
