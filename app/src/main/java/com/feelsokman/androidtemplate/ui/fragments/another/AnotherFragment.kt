@@ -49,10 +49,10 @@ class AnotherFragment : BaseFragment() {
 
         viewModelAnother.observeStringFromStorage()
 
-        activityViewModel.textData.observe(viewLifecycleOwner) {
+        /*activityViewModel.textData.observe(viewLifecycleOwner) {
             Timber.tag("NavigationLogger").e("AnotherFragment Activity string is $it")
         }
-
+*/
         viewModelAnother.textData.observe(viewLifecycleOwner) { stringFromStorage ->
             Timber.tag("NavigationLogger").e("AnotherFragment storage string is $stringFromStorage")
         }

@@ -1,20 +1,29 @@
 package com.feelsokman.androidtemplate.ui.activity.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.feelsokman.androidtemplate.usecase.GetStringFromStorageUseCase
-import timber.log.Timber
-import java.util.UUID
+import androidx.lifecycle.viewModelScope
+import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderRepository
+import com.feelsokman.androidtemplate.result.fold
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val getStringFromStorageUseCase: GetStringFromStorageUseCase
+    private val jsonPlaceHolderRepository: JsonPlaceHolderRepository
 ) : ViewModel() {
 
-    val textData = MutableLiveData<String>().apply { postValue(UUID.randomUUID().toString()) }
+    val textStateFlow = MutableStateFlow<String?>(null)
 
-    override fun onCleared() {
-        Timber.d("MainViewModel cleared")
-        super.onCleared()
+    fun getTodo() {
+        viewModelScope.launch {
+            jsonPlaceHolderRepository.getTodo().fold(
+                ifSuccess = {
+                    textStateFlow.value = it.title
+                },
+                ifError = {
+                    textStateFlow.value = it.toString()
+                }
+            )
+        }
     }
 }

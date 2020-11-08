@@ -56,7 +56,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.textStateFlow.collect {
+            activityViewModel.textStateFlow.collect {
                 Toasty.success(view.context, it ?: "null", Toast.LENGTH_LONG).show()
             }
         }

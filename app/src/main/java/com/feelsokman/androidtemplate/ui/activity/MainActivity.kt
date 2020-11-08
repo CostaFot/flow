@@ -31,6 +31,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mainViewModel.textStateFlow
+
         // Initial setup!
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -45,9 +47,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        mainViewModel.textData.observe(this) {
-            logDebug { "MainActivity $it" }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
