@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderClient
+import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderRepository
 
 class DoSomethingWorkerFactory(
-    private val jsonPlaceHolderClient: JsonPlaceHolderClient
+    private val jsonPlaceHolderRepository: JsonPlaceHolderRepository
 ) : WorkerFactory() {
 
     override fun createWorker(
@@ -18,7 +18,7 @@ class DoSomethingWorkerFactory(
 
         return when (workerClassName) {
             DoSomethingWorker::class.java.name ->
-                DoSomethingWorker(appContext, workerParameters, jsonPlaceHolderClient)
+                DoSomethingWorker(appContext, workerParameters, jsonPlaceHolderRepository)
             else ->
                 // Return null, so that the base class can delegate to the default WorkerFactory.
                 null

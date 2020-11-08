@@ -104,6 +104,8 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+
     implementation(Support.appCompat)
     implementation(Support.material)
     implementation(Support.cardViewX)

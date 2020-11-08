@@ -9,7 +9,7 @@ import com.feelsokman.androidtemplate.result.error.ErrorMapper
 import com.feelsokman.androidtemplate.result.error.GenericError
 import kotlinx.coroutines.withContext
 
-class JsonPlaceHolderClient(
+class JsonPlaceHolderRepository(
     private val jsonPlaceHolderService: JsonPlaceHolderService,
     private val dispatcherProvider: DispatcherProvider
 ) {

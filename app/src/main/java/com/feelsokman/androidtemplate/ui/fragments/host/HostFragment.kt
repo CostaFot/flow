@@ -32,7 +32,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
 
     @Inject internal lateinit var viewModelFactory: ViewModelFactory
     @Inject internal lateinit var workManager: WorkManager
-    private val viewModelHost by viewModels<HostViewModel> { viewModelFactory }
+    private val viewModel by viewModels<HostViewModel> { viewModelFactory }
     private val activityViewModel by activityViewModels<MainViewModel>()
 
     private lateinit var viewBinder: ViewBinder
@@ -56,13 +56,13 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModelHost.textData.collect {
+            viewModel.textStateFlow.collect {
                 Toasty.success(view.context, it ?: "null", Toast.LENGTH_LONG).show()
             }
         }
 
         binding.button.setOnClickListener {
-            viewModelHost.getTodo()
+            viewModel.getTodo()
         }
     }
 

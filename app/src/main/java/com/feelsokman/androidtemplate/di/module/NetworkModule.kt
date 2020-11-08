@@ -6,7 +6,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.feelsokman.androidtemplate.core.coroutine.DispatcherProvider
 import com.feelsokman.androidtemplate.core.features.FlagProvider
 import com.feelsokman.androidtemplate.net.connectivity.ConnectivityChecker
-import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderClient
+import com.feelsokman.androidtemplate.net.domain.JsonPlaceHolderRepository
 import com.feelsokman.androidtemplate.net.net.JsonPlaceHolderService
 import com.google.gson.Gson
 import dagger.Module
@@ -87,5 +87,5 @@ object NetworkModule {
     internal fun providesJsonPlaceHolderSClient(
         jsonPlaceHolderService: JsonPlaceHolderService,
         dispatcherProvider: DispatcherProvider
-    ): JsonPlaceHolderClient = JsonPlaceHolderClient(jsonPlaceHolderService, dispatcherProvider)
+    ): JsonPlaceHolderRepository = JsonPlaceHolderRepository(jsonPlaceHolderService, dispatcherProvider)
 }
