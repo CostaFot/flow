@@ -54,7 +54,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            activityViewModel.todoSharedFlow.collect { todoString ->
+            activityViewModel.todoStateFlow.collect { todoString ->
                 if (todoString != null) {
                     binding.textView.text = todoString
                 } else {
@@ -64,7 +64,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         }
 
         binding.button.setOnClickListener {
-            activityViewModel.getTodo()
+            activityViewModel.updateTodoWithStateFlow()
         }
     }
 

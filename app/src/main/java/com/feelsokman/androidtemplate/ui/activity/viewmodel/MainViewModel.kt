@@ -14,9 +14,9 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val todoStateFlow = MutableStateFlow<String?>(value = null)
-    val todoSharedFlow = MutableSharedFlow<String?>(replay = 1)
+    val todoSharedFlow = MutableSharedFlow<String?>(replay = 0)
 
-    fun getTodo() {
+    fun updateTodoWithSharedFlow() {
         viewModelScope.launch {
             jsonPlaceHolderRepository.getTodo().fold(
                 ifSuccess = {
@@ -24,6 +24,19 @@ class MainViewModel @Inject constructor(
                 },
                 ifError = {
                     todoSharedFlow.emit(it.toString())
+                }
+            )
+        }
+    }
+
+    fun updateTodoWithStateFlow() {
+        viewModelScope.launch {
+            jsonPlaceHolderRepository.getTodo().fold(
+                ifSuccess = {
+                    todoStateFlow.value = it.title
+                },
+                ifError = {
+                    todoStateFlow.value = it.toString()
                 }
             )
         }
