@@ -14,7 +14,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val todoStateFlow = MutableStateFlow<String?>(value = null)
-    val todoSharedFlow = MutableSharedFlow<String?>(replay = 0)
+    val todoSharedFlow = MutableSharedFlow<String?>(replay = 1)
 
     fun getTodo() {
         viewModelScope.launch {
