@@ -55,13 +55,13 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            activityViewModel.textStateFlow.collect { todoString ->
+            activityViewModel.todoSharedFlow.collect { todoString ->
                 Toast.makeText(view.context, todoString ?: "null", Toast.LENGTH_LONG).show()
             }
         }
 
         binding.button.setOnClickListener {
-            viewModel.getTodo()
+            activityViewModel.getTodo()
         }
     }
 

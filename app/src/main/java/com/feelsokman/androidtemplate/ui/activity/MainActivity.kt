@@ -31,7 +31,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel.textStateFlow
+        mainViewModel.todoStateFlow
 
         // Initial setup!
         setSupportActionBar(toolbar)
