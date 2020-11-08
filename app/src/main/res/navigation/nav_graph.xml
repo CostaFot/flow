@@ -30,6 +30,19 @@
         app:popEnterAnim="@anim/enter_from_left"
         app:popExitAnim="@anim/exit_to_right"
         app:popUpTo="@+id/anotherFragment"
-        app:popUpToInclusive="true">
-    </action>
+        app:popUpToInclusive="true"></action>
+    <fragment
+        android:id="@+id/comboFragment"
+        android:name="com.feelsokman.androidtemplate.ui.fragments.combo.ComboFragment"
+        android:label="ComboFragment" />
+
+    <action
+        android:id="@+id/action_global_comboFragment"
+        app:destination="@id/comboFragment"
+        app:enterAnim="@anim/enter_from_left"
+        app:exitAnim="@anim/exit_to_right"
+        app:popEnterAnim="@anim/enter_from_left"
+        app:popExitAnim="@anim/exit_to_right"
+        app:popUpTo="@+id/comboFragment"
+        app:popUpToInclusive="true"></action>
 </navigation>

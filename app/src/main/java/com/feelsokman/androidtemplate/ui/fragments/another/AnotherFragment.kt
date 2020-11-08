@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.feelsokman.androidtemplate.R
 import com.feelsokman.androidtemplate.di.component.AppComponent
 import com.feelsokman.androidtemplate.di.getComponent
@@ -17,7 +18,9 @@ import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
 import com.feelsokman.androidtemplate.ui.base.BaseFragment
 import com.feelsokman.androidtemplate.ui.fragments.another.viewmodel.AnotherViewModel
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_another.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AnotherFragment : BaseFragment() {
@@ -47,14 +50,14 @@ class AnotherFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModelAnother.observeStringFromStorage()
-
-        /*activityViewModel.textData.observe(viewLifecycleOwner) {
-            Timber.tag("NavigationLogger").e("AnotherFragment Activity string is $it")
-        }
-*/
-        viewModelAnother.textData.observe(viewLifecycleOwner) { stringFromStorage ->
-            Timber.tag("NavigationLogger").e("AnotherFragment storage string is $stringFromStorage")
+        viewLifecycleOwner.lifecycleScope.launch {
+            activityViewModel.todoSharedFlow.collect { todoString ->
+                if (todoString != null) {
+                    textView1.text = todoString
+                } else {
+                    textView1.text = "null"
+                }
+            }
         }
     }
 

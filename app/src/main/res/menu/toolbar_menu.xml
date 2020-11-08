@@ -1,11 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
-        android:id="@+id/anotherFragment"
-        android:title="AnotherFragment Global Action"
+        android:id="@+id/comboFragment"
+        android:title="Go to combo fragment"
         app:showAsAction="never" />
-
 
 </menu>
