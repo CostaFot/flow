@@ -12,7 +12,7 @@ class MainViewModel @Inject constructor(
     private val jsonPlaceHolderRepository: JsonPlaceHolderRepository
 ) : ViewModel() {
 
-    val textStateFlow = MutableStateFlow<String?>(null)
+    val textStateFlow = MutableStateFlow<String?>(value = null)
 
     fun getTodo() {
         viewModelScope.launch {

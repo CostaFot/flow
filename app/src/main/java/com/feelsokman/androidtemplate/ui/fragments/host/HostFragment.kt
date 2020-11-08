@@ -18,7 +18,6 @@ import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
 import com.feelsokman.androidtemplate.ui.base.BaseFragment
 import com.feelsokman.androidtemplate.ui.fragments.host.viewmodel.HostViewModel
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
-import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -56,8 +55,8 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            activityViewModel.textStateFlow.collect {
-                Toasty.success(view.context, it ?: "null", Toast.LENGTH_LONG).show()
+            activityViewModel.textStateFlow.collect { todoString ->
+                Toast.makeText(view.context, todoString ?: "null", Toast.LENGTH_LONG).show()
             }
         }
 
