@@ -13,7 +13,7 @@ import com.feelsokman.androidtemplate.R
 import com.feelsokman.androidtemplate.di.component.AppComponent
 import com.feelsokman.androidtemplate.di.getComponent
 import com.feelsokman.androidtemplate.extensions.logDebug
-import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
+import com.feelsokman.androidtemplate.ui.activity.viewmodel.TodoViewModel
 import com.feelsokman.androidtemplate.ui.base.BaseActivity
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
 
     @Inject internal lateinit var viewModelFactory: ViewModelFactory
 
-    private val mainViewModel by viewModels<MainViewModel> { viewModelFactory }
+    private val mainViewModel by viewModels<TodoViewModel> { viewModelFactory }
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {

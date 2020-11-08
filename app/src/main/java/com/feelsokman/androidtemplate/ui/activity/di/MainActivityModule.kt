@@ -2,7 +2,7 @@ package com.feelsokman.androidtemplate.ui.activity.di
 
 import androidx.lifecycle.ViewModel
 import com.feelsokman.androidtemplate.di.module.ViewModelKey
-import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
+import com.feelsokman.androidtemplate.ui.activity.viewmodel.TodoViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -12,6 +12,6 @@ abstract class MainActivityModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+    @ViewModelKey(TodoViewModel::class)
+    abstract fun bindMainViewModel(viewModel: TodoViewModel): ViewModel
 }

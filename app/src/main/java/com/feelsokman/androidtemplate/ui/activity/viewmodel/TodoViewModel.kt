@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class TodoViewModel @Inject constructor(
     private val jsonPlaceHolderRepository: JsonPlaceHolderRepository
 ) : ViewModel() {
 

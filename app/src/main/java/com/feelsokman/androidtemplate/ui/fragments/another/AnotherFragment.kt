@@ -14,7 +14,7 @@ import com.feelsokman.androidtemplate.di.component.AppComponent
 import com.feelsokman.androidtemplate.di.getComponent
 import com.feelsokman.androidtemplate.extensions.savedState
 import com.feelsokman.androidtemplate.preferences.AppPreferences
-import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
+import com.feelsokman.androidtemplate.ui.activity.viewmodel.TodoViewModel
 import com.feelsokman.androidtemplate.ui.base.BaseFragment
 import com.feelsokman.androidtemplate.ui.fragments.another.viewmodel.AnotherViewModel
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
@@ -29,7 +29,7 @@ class AnotherFragment : BaseFragment() {
     @Inject internal lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModelAnother by viewModels<AnotherViewModel> { viewModelFactory }
-    private val activityViewModel by activityViewModels<MainViewModel>()
+    private val todoViewModel by activityViewModels<TodoViewModel>()
 
     private val state by savedState()
     private var count: Int by state.property(defaultValue = 0)
@@ -51,7 +51,7 @@ class AnotherFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            activityViewModel.todoSharedFlow.collect { todoString ->
+            todoViewModel.todoSharedFlow.collect { todoString ->
                 if (todoString != null) {
                     textView1.text = todoString
                 } else {

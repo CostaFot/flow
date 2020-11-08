@@ -13,7 +13,7 @@ import androidx.work.WorkManager
 import com.feelsokman.androidtemplate.databinding.FragmentHostBinding
 import com.feelsokman.androidtemplate.di.component.AppComponent
 import com.feelsokman.androidtemplate.di.getComponent
-import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
+import com.feelsokman.androidtemplate.ui.activity.viewmodel.TodoViewModel
 import com.feelsokman.androidtemplate.ui.base.BaseFragment
 import com.feelsokman.androidtemplate.ui.fragments.host.viewmodel.HostViewModel
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
@@ -31,7 +31,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
     @Inject internal lateinit var viewModelFactory: ViewModelFactory
     @Inject internal lateinit var workManager: WorkManager
     private val viewModel by viewModels<HostViewModel> { viewModelFactory }
-    private val activityViewModel by activityViewModels<MainViewModel>()
+    private val todoViewModel by activityViewModels<TodoViewModel>()
 
     private lateinit var viewBinder: ViewBinder
 
@@ -54,7 +54,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            activityViewModel.todoStateFlow.collect { todoString ->
+            todoViewModel.todoStateFlow.collect { todoString ->
                 if (todoString != null) {
                     binding.textView.text = todoString
                 } else {
@@ -64,7 +64,7 @@ class HostFragment : BaseFragment(), ViewBinder.Callback {
         }
 
         binding.button.setOnClickListener {
-            activityViewModel.updateTodoWithStateFlow()
+            todoViewModel.updateTodoWithStateFlow()
         }
     }
 

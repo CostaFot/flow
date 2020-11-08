@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.work.WorkManager
 import com.feelsokman.androidtemplate.databinding.FragmentComboBinding
-import com.feelsokman.androidtemplate.ui.activity.viewmodel.MainViewModel
+import com.feelsokman.androidtemplate.ui.activity.viewmodel.TodoViewModel
 import com.feelsokman.androidtemplate.ui.fragments.host.ViewBinder
 import com.feelsokman.androidtemplate.utilities.viewmodel.ViewModelFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +21,7 @@ class ComboFragment : Fragment() {
     @Inject internal lateinit var workManager: WorkManager
 
 
-    private val activityViewModel by activityViewModels<MainViewModel>()
+    private val activityViewModel by activityViewModels<TodoViewModel>()
 
     private lateinit var viewBinder: ViewBinder
 
